@@ -1,0 +1,1185 @@
+pool:
+  vmImage: vs2017-win2016
+trigger:
+- buildbranch
+pr: none
+stages:
+- stage: stage_0
+  jobs:
+  - job: ros_noetic_catkin
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-catkin
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-catkin
+  - job: ros_noetic_diagnostic_updater
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-diagnostic-updater
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-diagnostic-updater
+  - job: ros_noetic_dynamic_reconfigure
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-dynamic-reconfigure
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-dynamic-reconfigure
+  - job: ros_noetic_laser_proc
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-laser-proc
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-laser-proc
+  - job: ros_noetic_message_generation
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-message-generation
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-message-generation
+  - job: ros_noetic_nodelet
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-nodelet
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-nodelet
+  - job: ros_noetic_rosconsole
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-rosconsole
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-rosconsole
+  - job: ros_noetic_roscpp
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-roscpp
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-roscpp
+  - job: ros_noetic_roslaunch
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-roslaunch
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-roslaunch
+  - job: ros_noetic_roslint
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-roslint
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-roslint
+  - job: ros_noetic_sensor_msgs
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-sensor-msgs
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-sensor-msgs
+  - job: ros_noetic_std_msgs
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-std-msgs
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-std-msgs
+  - job: ros_noetic_std_srvs
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-std-srvs
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-std-srvs
+  - job: ros_noetic_tf
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-tf
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-tf
+  - job: ros_noetic_urg_c
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-urg-c
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-urg-c
+  - job: ros_noetic_message_runtime
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-message-runtime
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-message-runtime
+- stage: stage_1
+  jobs:
+  - job: ros_noetic_urg_node
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge/label/boa_dev -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        @rem git clone https://github.com/thesnakepit/boa
+
+        @rem cd boa
+
+        @rem pip install -e .
+
+        @rem cd ..
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        @rem conda info
+
+        @rem conda config --show-sources
+
+
+        conda remove --force m2-git
+
+
+        @rem conda list --show-channel-urls
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa build .
+
+
+        @rem conda.exe build "recipe" -m .ci_support/%CONFIG%.yaml
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-urg-node
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-urg-node
+- stage: stage_2
+  jobs: []

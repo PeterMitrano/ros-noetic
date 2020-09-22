@@ -1,0 +1,21 @@
+pool:
+  vmImage: ubuntu-16.04
+trigger:
+- buildbranch
+pr: none
+stages:
+- stage: stage_1
+  jobs:
+  - job: ros_noetic_urg_node
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/run_docker_build.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-urg-node
+      displayName: Build ros-noetic-urg-node

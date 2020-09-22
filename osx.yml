@@ -1,0 +1,233 @@
+pool:
+  vmImage: macOS-10.15
+trigger:
+- buildbranch
+pr: none
+stages:
+- stage: stage_0
+  jobs:
+  - job: ros_noetic_catkin
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-catkin
+      displayName: Build ros-noetic-catkin
+  - job: ros_noetic_diagnostic_updater
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-diagnostic-updater
+      displayName: Build ros-noetic-diagnostic-updater
+  - job: ros_noetic_dynamic_reconfigure
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-dynamic-reconfigure
+      displayName: Build ros-noetic-dynamic-reconfigure
+  - job: ros_noetic_laser_proc
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-laser-proc
+      displayName: Build ros-noetic-laser-proc
+  - job: ros_noetic_message_generation
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-message-generation
+      displayName: Build ros-noetic-message-generation
+  - job: ros_noetic_nodelet
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-nodelet
+      displayName: Build ros-noetic-nodelet
+  - job: ros_noetic_rosconsole
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-rosconsole
+      displayName: Build ros-noetic-rosconsole
+  - job: ros_noetic_roscpp
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-roscpp
+      displayName: Build ros-noetic-roscpp
+  - job: ros_noetic_roslaunch
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-roslaunch
+      displayName: Build ros-noetic-roslaunch
+  - job: ros_noetic_roslint
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-roslint
+      displayName: Build ros-noetic-roslint
+  - job: ros_noetic_sensor_msgs
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-sensor-msgs
+      displayName: Build ros-noetic-sensor-msgs
+  - job: ros_noetic_std_msgs
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-std-msgs
+      displayName: Build ros-noetic-std-msgs
+  - job: ros_noetic_std_srvs
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-std-srvs
+      displayName: Build ros-noetic-std-srvs
+  - job: ros_noetic_tf
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-tf
+      displayName: Build ros-noetic-tf
+  - job: ros_noetic_urg_c
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-urg-c
+      displayName: Build ros-noetic-urg-c
+  - job: ros_noetic_message_runtime
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-message-runtime
+      displayName: Build ros-noetic-message-runtime
+- stage: stage_1
+  jobs:
+  - job: ros_noetic_urg_node
+    steps:
+    - script: 'export CI=azure
+
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+
+        .scripts/build_osx.sh'
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-urg-node
+      displayName: Build ros-noetic-urg-node
+- stage: stage_2
+  jobs: []

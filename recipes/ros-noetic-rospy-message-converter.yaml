@@ -1,0 +1,44 @@
+package:
+  name: ros-noetic-rospy-message-converter
+  version: 0.5.4
+source:
+  git_url: https://github.com/uos-gbp/rospy_message_converter-release.git
+  git_rev: release/noetic/rospy_message_converter/0.5.4-1
+  folder: ros-noetic-rospy-message-converter/src/work
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 0
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - cmake
+  host:
+    - numpy
+    - python
+    - ros-noetic-catkin
+    - ros-noetic-message-generation
+    - ros-noetic-rosunit
+    - ros-noetic-std-msgs
+    - ros-noetic-std-srvs
+  run:
+    - python
+    - ros-noetic-message-runtime
+    - ros-noetic-roslib
+    - ros-noetic-rospy
+    - ros-noetic-std-msgs

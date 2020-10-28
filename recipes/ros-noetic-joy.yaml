@@ -1,0 +1,43 @@
+package:
+  name: ros-noetic-joy
+  version: 1.15.0
+source:
+  git_url: https://github.com/ros-gbp/joystick_drivers-release.git
+  git_rev: release/noetic/joy/1.15.0-1
+  folder: ros-noetic-joy/src/work
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 0
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - cmake
+  host:
+    - python
+    - ros-noetic-catkin
+    - ros-noetic-diagnostic-updater
+    - ros-noetic-rosbag
+    - ros-noetic-roscpp
+    - ros-noetic-roslint
+    - ros-noetic-sensor-msgs
+  run:
+    - python
+    - ros-noetic-diagnostic-updater
+    - ros-noetic-roscpp
+    - ros-noetic-sensor-msgs

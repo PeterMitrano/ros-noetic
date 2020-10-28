@@ -1,0 +1,54 @@
+package:
+  name: ros-noetic-stereo-image-proc
+  version: 1.15.2
+source:
+  git_url: https://github.com/ros-gbp/image_pipeline-release.git
+  git_rev: release/noetic/stereo_image_proc/1.15.2-1
+  folder: ros-noetic-stereo-image-proc/src/work
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 0
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - cmake
+  host:
+    - python
+    - ros-noetic-catkin
+    - ros-noetic-cv-bridge
+    - ros-noetic-dynamic-reconfigure
+    - ros-noetic-image-geometry
+    - ros-noetic-image-proc
+    - ros-noetic-image-transport
+    - ros-noetic-message-filters
+    - ros-noetic-nodelet
+    - ros-noetic-rostest
+    - ros-noetic-sensor-msgs
+    - ros-noetic-stereo-msgs
+  run:
+    - python
+    - ros-noetic-cv-bridge
+    - ros-noetic-dynamic-reconfigure
+    - ros-noetic-image-geometry
+    - ros-noetic-image-proc
+    - ros-noetic-image-transport
+    - ros-noetic-message-filters
+    - ros-noetic-nodelet
+    - ros-noetic-sensor-msgs
+    - ros-noetic-stereo-msgs

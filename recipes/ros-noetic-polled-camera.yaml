@@ -1,0 +1,46 @@
+package:
+  name: ros-noetic-polled-camera
+  version: 1.12.0
+source:
+  git_url: https://github.com/ros-gbp/image_common-release.git
+  git_rev: release/noetic/polled_camera/1.12.0-1
+  folder: ros-noetic-polled-camera/src/work
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 0
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - cmake
+  host:
+    - python
+    - ros-noetic-catkin
+    - ros-noetic-image-transport
+    - ros-noetic-message-generation
+    - ros-noetic-message-runtime
+    - ros-noetic-roscpp
+    - ros-noetic-sensor-msgs
+    - ros-noetic-std-msgs
+  run:
+    - python
+    - ros-noetic-image-transport
+    - ros-noetic-message-runtime
+    - ros-noetic-roscpp
+    - ros-noetic-sensor-msgs
+    - ros-noetic-std-msgs

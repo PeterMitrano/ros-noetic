@@ -1,0 +1,91 @@
+package:
+  name: ros-noetic-slam-toolbox
+  version: 1.5.4
+source:
+  git_url: https://github.com/SteveMacenski/slam_toolbox-release.git
+  git_rev: release/noetic/slam_toolbox/1.5.4-1
+  folder: ros-noetic-slam-toolbox/src/work
+  patches:
+    - patch/ros-noetic-slam-toolbox.patch
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 2
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - cmake
+  host:
+    - ceres-solver
+    - eigen
+    - gtest
+    - liblapack 3.8.0 *netlib
+    - python
+    - qt
+    - ros-noetic-catkin
+    - ros-noetic-cmake-modules
+    - ros-noetic-interactive-markers
+    - ros-noetic-libg2o
+    - ros-noetic-map-server
+    - ros-noetic-message-filters
+    - ros-noetic-message-runtime
+    - ros-noetic-nav-msgs
+    - ros-noetic-pluginlib
+    - ros-noetic-rosconsole
+    - ros-noetic-roscpp
+    - ros-noetic-sensor-msgs
+    - ros-noetic-slam-toolbox-msgs
+    - ros-noetic-sparse-bundle-adjustment
+    - ros-noetic-std-msgs
+    - ros-noetic-std-srvs
+    - ros-noetic-tf
+    - ros-noetic-tf2
+    - ros-noetic-tf2-geometry-msgs
+    - ros-noetic-tf2-ros
+    - ros-noetic-visualization-msgs
+    - suitesparse
+    - tbb
+    - tbb-devel
+  run:
+    - ceres-solver
+    - eigen
+    - liblapack
+    - python
+    - qt
+    - ros-noetic-interactive-markers
+    - ros-noetic-libg2o
+    - ros-noetic-map-server
+    - ros-noetic-message-filters
+    - ros-noetic-message-runtime
+    - ros-noetic-nav-msgs
+    - ros-noetic-pluginlib
+    - ros-noetic-rosconsole
+    - ros-noetic-roscpp
+    - ros-noetic-sensor-msgs
+    - ros-noetic-slam-toolbox-msgs
+    - ros-noetic-sparse-bundle-adjustment
+    - ros-noetic-std-msgs
+    - ros-noetic-std-srvs
+    - ros-noetic-tf
+    - ros-noetic-tf2
+    - ros-noetic-tf2-geometry-msgs
+    - ros-noetic-tf2-ros
+    - ros-noetic-visualization-msgs
+    - suitesparse
+    - tbb
+    - tbb-devel

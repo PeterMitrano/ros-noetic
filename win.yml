@@ -1,0 +1,118 @@
+pool:
+  vmImage: vs2017-win2016
+trigger:
+- buildbranch_win
+pr: none
+stages:
+- stage: stage_1
+  jobs:
+  - job: ros_noetic_sparse_bundle_adjustment
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        conda remove --force m2-git
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa render .
+
+        boa build .
+
+
+        anaconda -t %ANACONDA_API_TOKEN% upload "C:\bld\win-64\*.tar.bz2" --force
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-sparse-bundle-adjustment
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-sparse-bundle-adjustment
+- stage: stage_2
+  jobs:
+  - job: ros_noetic_slam_toolbox
+    variables:
+      CONDA_BLD_PATH: C:\\bld\\
+    steps:
+    - task: CondaEnvironment@1
+      inputs:
+        packageSpecs: python=3.6 dataclasses conda-build conda conda-forge::conda-forge-ci-setup=3
+          pip boa quetz-client
+        installOptions: -c conda-forge
+        updateConda: true
+      displayName: Install conda-build, boa and activate environment
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+        run_conda_forge_build_setup'
+      displayName: conda-forge build setup
+    - script: '
+
+        set "CI=azure"
+
+        call activate base
+
+
+        conda config --append channels defaults
+
+        conda config --add channels conda-forge
+
+        conda config --add channels robostack
+
+        conda config --set channel_priority strict
+
+
+        conda remove --force m2-git
+
+
+        cp recipes/%CURRENT_BUILD_PKG_NAME%.yaml ./recipe.yaml
+
+
+        boa render .
+
+        boa build .
+
+
+        anaconda -t %ANACONDA_API_TOKEN% upload "C:\bld\win-64\*.tar.bz2" --force
+
+        '
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_BUILD_PKG_NAME: ros-noetic-slam-toolbox
+        PYTHONUNBUFFERED: 1
+      displayName: Build ros-noetic-slam-toolbox
